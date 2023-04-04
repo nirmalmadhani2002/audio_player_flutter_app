@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "songName": "Rockstar song",
+    "audio": "assets/audio/Rockstar song english song.mp3",
+    "image": "assets/images/song.png"
+  },
+  {
+    "id": 2,
+    "songName": "Entry Remix",
+    "audio": "assets/audio/Entry Remix.mp3",
+    "image": "assets/images/song78.jpg"
+  },
+  {
+    "id": 3,
+    "songName": "Teri Meri Prem Kahani",
+    "audio": "assets/audio/Teri Meri Prem Kahani.mp3",
+    "image": "assets/images/Teri_Meri.jpg"
+  },
+  {
+    "id": 4,
+    "songName": "Babul Ki Dhuan",
+    "audio": "assets/audio/Babul Ki Dhuan.mp3",
+    "image": "assets/images/song.png"
+  },
+  {
+    "id": 5,
+    "songName": "Wedding Entry Song",
+    "audio": "assets/audio/Wedding Entry Song.mp3",
+    "image": "assets/images/song78.jpg"
+  },
+  {
+    "id": 6,
+    "songName": "BAPS",
+    "audio": "assets/audio/baps.mp3",
+    "image": "assets/images/baps.png"
+  },
+  {
+    "id": 7,
+    "songName": "Baps na bag ma",
+    "audio": "assets/audio/Baps na Bag ma.mp3",
+    "image": "assets/images/MSM3.jpg"
+  },
+  {
+    "id": 8,
+    "songName": "Shat_Shat_Varsh_Sare",
+    "audio": "assets/audio/Shat_Shat_Varsh_Sare.mp3",
+    "image": "assets/images/song.png"
+  },
+  {
+    "id": 9,
+    "songName": "VALAM",
+    "audio": "assets/audio/valam.mp3",
+    "image": "assets/images/VM.png"
+  },
+  {
+    "id": 10,
+    "songName": "Welcome Song",
+    "audio": "assets/audio/Welcome Song.mp3",
+    "image": "assets/images/WEL.png"
+  }
+]
