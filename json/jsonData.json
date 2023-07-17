@@ -1,62 +1,62 @@
 [
   {
     "id": 1,
-    "songName": "Rockstar song",
-    "audio": "assets/audio/Rockstar song english song.mp3",
-    "image": "assets/images/song.png"
+    "songName": "Shayad",
+    "audio": "assets/audio/SpotifyMate.com - Shayad (From _Love Aaj Kal_) - Pritam.mp3",
+    "image": "assets/images/shayad song.jpg"
   },
   {
     "id": 2,
-    "songName": "Entry Remix",
-    "audio": "assets/audio/Entry Remix.mp3",
-    "image": "assets/images/song78.jpg"
+    "songName": "Kesariya",
+    "audio": "assets/audio/Kesariya (Brahmastra).mp3",
+    "image": "assets/images/Kesariya.jpg"
   },
   {
     "id": 3,
-    "songName": "Teri Meri Prem Kahani",
-    "audio": "assets/audio/Teri Meri Prem Kahani.mp3",
-    "image": "assets/images/Teri_Meri.jpg"
+    "songName": "Saware",
+    "audio": "assets/audio/Saware.mp3",
+    "image": "assets/images/Saware.jpg"
   },
   {
     "id": 4,
-    "songName": "Babul Ki Dhuan",
-    "audio": "assets/audio/Babul Ki Dhuan.mp3",
-    "image": "assets/images/song.png"
+    "songName": "Ram Siya Ram",
+    "audio": "assets/audio/Ram Siya Ram (Adipurush_).mp3",
+    "image": "assets/images/Ram Siya Ram.jpg"
   },
   {
     "id": 5,
-    "songName": "Wedding Entry Song",
-    "audio": "assets/audio/Wedding Entry Song.mp3",
-    "image": "assets/images/song78.jpg"
+    "songName": "Mauja Hi Mauja",
+    "audio": "assets/audio/Mauja Hi Mauja.mp3",
+    "image": "assets/images/jab we met.jpg"
   },
   {
     "id": 6,
-    "songName": "BAPS",
-    "audio": "assets/audio/baps.mp3",
-    "image": "assets/images/baps.png"
+    "songName": "Tum Prem Ho",
+    "audio": "assets/audio/Tum Prem Ho.mp3",
+    "image": "assets/images/Tum Prem Ho.jpg"
   },
   {
     "id": 7,
-    "songName": "Baps na bag ma",
-    "audio": "assets/audio/Baps na Bag ma.mp3",
-    "image": "assets/images/MSM3.jpg"
+    "songName": "Tera Fitoor",
+    "audio": "assets/audio/Tera Fitoor.mp3",
+    "image": "assets/images/Tera Fitoor.jpg"
   },
   {
     "id": 8,
-    "songName": "Shat_Shat_Varsh_Sare",
-    "audio": "assets/audio/Shat_Shat_Varsh_Sare.mp3",
-    "image": "assets/images/song.png"
+    "songName": "Tum Tak",
+    "audio": "assets/audio/Tum Tak.mp3",
+    "image": "assets/images/Tum Tak.jpg"
   },
   {
     "id": 9,
-    "songName": "VALAM",
-    "audio": "assets/audio/valam.mp3",
-    "image": "assets/images/VM.png"
+    "songName": "Hamari Adhuri Kahani",
+    "audio": "assets/audio/Hamari Adhuri Kahani (Title Track).mp3",
+    "image": "assets/images/Hamari Adhuri Kahani.jpg"
   },
   {
     "id": 10,
-    "songName": "Welcome Song",
-    "audio": "assets/audio/Welcome Song.mp3",
-    "image": "assets/images/WEL.png"
+    "songName": "Humdard",
+    "audio": "assets/audio/Humdard.mp3",
+    "image": "assets/images/Humdard.jpg"
   }
 ]

@@ -1,6 +1,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../global.dart';
 
 class AllSongPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class _AllSongPageState extends State<AllSongPage> {
 
   audioOpen() async {
     await assetsAudioPlayer.open(Audio(Global.currentSong.audio),
-        autoStart: false);
+        autoStart: true);
 
     setState(() {
       duration = assetsAudioPlayer.current.value?.audio.duration;
@@ -29,152 +29,172 @@ class _AllSongPageState extends State<AllSongPage> {
     audioOpen();
   }
 
-  bool isPlaying = false;
+  bool isPlaying = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Song 🎶",
-          style: TextStyle(fontSize: 29, color: Colors.grey.shade500),
+          "${Global.currentSong.songName}",
+          style:GoogleFonts.teko(textStyle: TextStyle(
+            fontSize: 29,
+            color: Colors.white,
+            letterSpacing: 5,
+          ),)
         ),
         centerTitle: true,
-        // elevation: 2,
-        backgroundColor: Colors.deepPurple.withOpacity(0.4),
+        backgroundColor: Colors.black,
       ),
-      backgroundColor: Colors.deepPurple.withOpacity(0.5),
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            const SizedBox(height: 75),
-            Text(
-              "${Global.currentSong.songName}",
-              style: const TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-            const Spacer(),
-            Container(
-              height: 230,
-              width: 230,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              const SizedBox(height: 200),
+              Container(
+                height: 230,
+                width: 230,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
                     image: AssetImage(
                       "${Global.currentSong.image}",
                     ),
                     fit: (Global.currentSong.songName! == "L's Theme C")
                         ? BoxFit.fitHeight
-                        : BoxFit.cover),
+                        : BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 150),
+              StreamBuilder(
+                  stream: assetsAudioPlayer.currentPosition,
+                  builder: (context, AsyncSnapshot snapshot) {
+                    Duration currentPosition = snapshot.data;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 22),
+                          child: Text(
+                            "${"$currentPosition".split(".")[0]}/ ${"$duration}".split(".")[0]}",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Slider(
+                          min: 0,
+                          max: duration!.inSeconds.toDouble(),
+                          value: currentPosition.inSeconds.toDouble(),
+                          onChanged: (val) async {
+                            await assetsAudioPlayer
+                                .seek(Duration(seconds: val.toInt()));
+                          },
+                        ),
+                      ],
+                    );
+                  }),
+              const SizedBox(height: 12),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        width: MediaQuery.of(context).size.width / 1,
+        height: MediaQuery.of(context).size.height / 13,
+        decoration: BoxDecoration(
+          color: Colors.deepPurple.shade200,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('HomePage', (route) => false);
+              },
+              child: const Icon(
+                Icons.filter_list,
+                color: Colors.black,
+                size: 38,
               ),
             ),
-            const SizedBox(height: 25),
-            StreamBuilder(
-                stream: assetsAudioPlayer.currentPosition,
-                //Global.currentSong.player.currentPosition,
-                builder: (context, AsyncSnapshot snapshot) {
-                  Duration currentPosition = snapshot.data;
-                  return Column(
-                    children: [
-                      Text(
-                        "${"$currentPosition".split(".")[0]}/ ${"$duration}".split(".")[0]}",
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                      Slider(
-                        min: 0,
-                        max: duration!.inSeconds.toDouble(),
-                        value: currentPosition.inSeconds.toDouble(),
-                        onChanged: (val) async {
-                          await assetsAudioPlayer
-                              .seek(Duration(seconds: val.toInt()));
-                        },
-                      ),
-                    ],
+            GestureDetector(
+              onTap: () {
+                if (Global.index > 0) {
+                  setState(() {
+                    assetsAudioPlayer.pause();
+                    Global.index--;
+                    Global.currentSong = Global.songList![Global.index];
+                  });
+                  Navigator.of(context).pushReplacementNamed(
+                    'AllSongPage',
                   );
-                }),
-            const Spacer(),
-            Container(
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.teal,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    iconSize: 38,
-                    onPressed: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          'HomePage', (route) => false);
-                    },
-                    icon: const Icon(Icons.filter_list),
-                  ),
-                  IconButton(
-                    iconSize: 38,
-                    onPressed: () {
-                      if (Global.index > 0) {
-                        setState(() {
-                          assetsAudioPlayer.pause();
-                          Global.index--;
-                          Global.currentSong = Global.songList![Global.index];
-                        });
-                        Navigator.of(context)
-                            .pushReplacementNamed('AllSongPage');
-                      }
-                    },
-                    icon: const Icon(Icons.skip_previous),
-                  ),
-                  IconButton(
-                    iconSize: 38,
-                    onPressed: () async {
-                      setState(() {
-                        isPlaying = (isPlaying) ? false : true;
-                      });
-                      (isPlaying)
-                          ? await assetsAudioPlayer.play()
-                          : await assetsAudioPlayer.pause();
-                    },
-                    icon: (isPlaying)
-                        ? const Icon(Icons.pause)
-                        : const Icon(Icons.play_arrow),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      if (Global.index < Global.songList!.length - 1) {
-                        setState(() {
-                          assetsAudioPlayer.pause();
-                          Global.index++;
-                          Global.currentSong = Global.songList![Global.index];
-                        });
-                        Navigator.of(context)
-                            .pushReplacementNamed('AllSongPage');
-                      }
-                    },
-                    icon: const Icon(Icons.skip_next),
-                    iconSize: 38,
-                  ),
-                  IconButton(
-                    onPressed: () async {
-                      setState(() {
-                        isPlaying = false;
-                      });
-                      assetsAudioPlayer.stop();
-                    },
-                    icon: const Icon(Icons.stop),
-                    iconSize: 38,
-                  ),
-                ],
+                }
+              },
+              child: const Icon(
+                Icons.skip_previous,
+                size: 38,
+                color: Colors.black,
               ),
             ),
-            const SizedBox(height: 12),
+            GestureDetector(
+              onTap: () async {
+                setState(() {
+                  isPlaying = (isPlaying) ? false : true;
+                });
+                (isPlaying)
+                    ? await assetsAudioPlayer.play()
+                    : await assetsAudioPlayer.pause();
+              },
+              child: (isPlaying)
+                  ? const Icon(
+                      Icons.pause,
+                      size: 38,
+                color: Colors.black,
+                    )
+                  : const Icon(
+                      Icons.play_arrow,
+                color: Colors.black,
+                      size: 38,
+                    ),
+            ),
+            GestureDetector(
+              onTap: () {
+                if (Global.index < Global.songList!.length - 1) {
+                  setState(() {
+                    assetsAudioPlayer.pause();
+                    Global.index++;
+                    Global.currentSong = Global.songList![Global.index];
+                  });
+                  Navigator.of(context).pushReplacementNamed('AllSongPage');
+                }
+              },
+              child: const Icon(
+                Icons.skip_next,
+                size: 38,
+                color: Colors.black,
+              ),
+            ),
+            GestureDetector(
+              onTap: () async {
+                setState(() {
+                  isPlaying = false;
+                });
+                assetsAudioPlayer.stop();
+              },
+              child: const Icon(
+                Icons.stop,
+                size: 38,
+                color: Colors.black,
+              ),
+            ),
           ],
         ),
       ),
